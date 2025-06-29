@@ -202,3 +202,47 @@ private double saldo;
 - Impede acesso direto e indesejado aos atributos.
 - Permite aplicar regras de negócio (ex: validações) nos métodos set.
 - Ajuda a manter o controle sobre o estado interno do objeto.
+
+---
+
+## 🔁 Override em Java
+
+### 📌 O que é?
+
+- Override significa sobrescrever um método de uma classe pai (superclasse) em uma classe filha (subclasse).
+- Usado para alterar o comportamento herdado.
+
+### ✅ Regras para sobrescrever:
+
+- O método da subclasse deve ter:
+  - Mesma assinatura (nome + parâmetros)
+  - Mesmo tipo de retorno (ou um mais específico)
+  - Mesmo ou acesso mais permissivo (ex: public não pode virar private)
+- Usar a anotação @Override (boa prática — o compilador verifica se você está realmente sobrescrevendo).
+
+### 🧱 Exemplo:
+
+```java
+public class Animal {
+    public void emitirSom() {
+        System.out.println("Som genérico de animal");
+    }
+}
+
+public class Cachorro extends Animal {
+    @Override
+    public void emitirSom() {
+        System.out.println("Latido");
+    }
+}
+```
+
+### ▶️ Uso:
+
+```java
+Animal meuAnimal = new Cachorro();
+meuAnimal.emitirSom();  // Saída: Latido
+```
+
+- Mesmo a variável sendo do tipo Animal, o método sobrescrito em Cachorro será chamado — isso é polimorfismo.
+

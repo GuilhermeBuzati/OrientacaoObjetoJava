@@ -23,5 +23,7 @@ public class Principal {
         lost.exibeFichaTecnica();
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporadas(10);
+        lost.setMinutosPorEpisodios(50);
+        System.out.println(lost.getDuracaoEmMinutos());
     }
 }
