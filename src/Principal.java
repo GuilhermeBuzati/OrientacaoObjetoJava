@@ -1,3 +1,4 @@
+import br.com.alura.orientacaoObjetoJava.modelos.CalculadoraDeTempo;
 import br.com.alura.orientacaoObjetoJava.modelos.Filme;
 import br.com.alura.orientacaoObjetoJava.modelos.Serie;
 
@@ -25,5 +26,10 @@ public class Principal {
         lost.setEpisodiosPorTemporadas(10);
         lost.setMinutosPorEpisodios(50);
         System.out.println(lost.getDuracaoEmMinutos());
+
+        CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
+        calculadora.inclui(meuFilme);
+        calculadora.inclui(lost);
+        System.out.println(calculadora.getTempoTotal());
     }
 }

@@ -205,6 +205,55 @@ private double saldo;
 
 ---
 
+## 🧬 Herança em Java
+
+### 📌 O que é?
+
+- Herança permite que uma classe (subclasse) herde atributos e métodos de outra classe (superclasse).
+- Promove reutilização de código e facilita a especialização de comportamento.
+
+### 🧱 Sintaxe:
+
+```java
+public class Animal {
+    String nome;
+
+    public void emitirSom() {
+        System.out.println("Som genérico");
+    }
+}
+
+public class Cachorro extends Animal {
+  public void abanarRabo() {
+    System.out.println("Abanando o rabo");
+  }
+}
+```
+- Cachorro herda o atributo nome e o método emitirSom() de Animal.
+
+### 🔁 Comportamento:
+
+- A subclasse pode:
+
+    - Usar atributos e métodos da superclasse diretamente.
+    - Sobrescrever métodos com @Override (como você já aprendeu).
+    - Adicionar novos comportamentos.
+
+### 🔒 Controle de acesso:
+
+- Apenas os membros public e protected da superclasse são acessíveis pela subclasse.
+- Membros private não são herdados diretamente.
+
+### ☝️ Palavra-chave super
+
+- Usada para acessar membros da superclasse (atributos ou métodos):
+
+```java
+super.emitirSom(); // chama o método da superclasse
+```
+
+---
+
 ## 🔁 Override em Java
 
 ### 📌 O que é?
@@ -246,3 +295,166 @@ meuAnimal.emitirSom();  // Saída: Latido
 
 - Mesmo a variável sendo do tipo Animal, o método sobrescrito em Cachorro será chamado — isso é polimorfismo.
 
+---
+
+## 🔄 Sobrecarga de Métodos (Overload)
+
+### 📌 O que é?
+
+- A sobrecarga (overload) permite criar vários métodos com o mesmo nome, desde que tenham assinaturas diferentes (quantidade ou tipo de parâmetros).
+- Não depende do tipo de retorno!
+
+### 🧱 Exemplo:
+
+```java
+  public class Calculadora {
+    public int somar(int a, int b) {
+    return a + b;
+  }
+
+  public double somar(double a, double b) {
+      return a + b;
+  }
+  
+  public int somar(int a, int b, int c) {
+      return a + b + c;
+  }
+}
+```
+
+- Todos os métodos acima se chamam somar, mas têm assinaturas diferentes, portanto são válidos.
+
+### ✅ Vantagens:
+
+- Aumenta a flexibilidade e a legibilidade.
+- Ajuda a criar interfaces amigáveis ao desenvolvedor.
+
+--- 
+
+## 🧱 Design de Classes
+
+### 🎯 Boas práticas:
+
+- Uma classe deve representar uma responsabilidade clara.
+- Deve ser coesa: todos os atributos e métodos devem estar relacionados com o papel da classe.
+- Evite acoplamento excessivo com outras classes.
+- Crie métodos pequenos e de responsabilidade única.
+
+### 📐 Convenções e Organização:
+
+- Nome da classe: substantivo singular, com a primeira letra maiúscula.
+- Cada classe em seu próprio arquivo .java.
+- Use encapsulamento: private para atributos + get/set quando necessário.
+- Construtores personalizados para garantir consistência do objeto.
+
+## 🧠 Exemplo de design limpo:
+
+```java
+public class Produto {
+    private String nome;
+    private double preco;
+
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public double aplicarDesconto(double percentual) {
+        return preco - (preco * percentual);
+    }
+    // gets e sets omitidos por simplicidade
+}
+```
+
+---
+
+## 🌀 Polimorfismo em Java
+
+### 📌 O que é?
+
+- Polimorfismo significa "muitas formas".
+- Permite que objetos de diferentes classes sejam tratados como se fossem do mesmo tipo, normalmente o tipo da superclasse.
+- Funciona com métodos sobrescritos (@Override) e permite substituir comportamentos em tempo de execução.
+
+### 🧠 Exemplo básico:
+
+```java
+  public class Animal {
+    public void emitirSom() {
+    System.out.println("Som genérico");
+    }
+  }
+
+  public class Gato extends Animal {
+    @Override
+    public void emitirSom() {
+    System.out.println("Miau");
+    }
+  }
+
+  public class Cachorro extends Animal {
+    @Override
+    public void emitirSom() {
+    System.out.println("Au au");
+    }
+  }
+```
+### ▶️ Usando polimorfismo:
+
+```java
+Animal meuAnimal = new Gato();
+meuAnimal.emitirSom(); // Saída: Miau
+
+meuAnimal = new Cachorro();
+meuAnimal.emitirSom(); // Saída: Au au
+```
+
+- Mesmo declarada como Animal, a variável executa o método correto da subclasse (Gato, Cachorro) — isso é polimorfismo!
+
+### 🔄 Polimorfismo x Sobrecarga
+
+- Polimorfismo: usa herança + sobrescrita (@Override)
+- Sobrecarga: métodos com o mesmo nome, mas diferentes assinaturas (número/tipo de parâmetros)
+
+---
+
+🔐 Modificador protected
+
+### 📌 O que é?
+
+- O modificador protected torna um atributo ou método visível:
+- Na própria classe
+- Nas subclasses (mesmo em pacotes diferentes)
+- Em outras classes do mesmo pacote
+
+### 🔍 Comparação rápida
+
+| Modificador | Mesma Classe | Mesmo Pacote | Subclasse (outro pacote) | Fora da hierarquia |
+|-------------|--------------|--------------|---------------------------|---------------------|
+| `private`   | ✅           | ❌           | ❌                        | ❌                  |
+| *(default)* | ✅           | ✅           | ❌                        | ❌                  |
+| `protected` | ✅           | ✅           | ✅                        | ❌                  |
+| `public`    | ✅           | ✅           | ✅                        | ✅                  |
+
+
+### 🧱 Exemplo:
+
+```java
+public class Animal {
+    protected String especie;
+
+    protected void dormir() {
+        System.out.println("Animal dormindo");
+    }
+}
+
+public class Gato extends Animal {
+    public void mostrarEspecie() {
+      System.out.println(this.especie); // permitido
+      this.dormir(); // permitido
+    }
+}
+
+```
+
+- Atributos e métodos protected são acessíveis em subclasses, mesmo que estejam em pacotes diferentes, o que os torna úteis para herança sem expor tudo publicamente.
