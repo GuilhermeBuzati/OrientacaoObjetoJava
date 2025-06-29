@@ -1,4 +1,5 @@
 import br.com.alura.orientacaoObjetoJava.modelos.Filme;
+import br.com.alura.orientacaoObjetoJava.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
@@ -15,5 +16,12 @@ public class Principal {
 
         System.out.println(meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
+
+        Serie lost = new Serie();
+        lost.setNome("Lost");
+        lost.setAnoDeLancamento(2010);
+        lost.exibeFichaTecnica();
+        lost.setTemporadas(10);
+        lost.setEpisodiosPorTemporadas(10);
     }
 }
