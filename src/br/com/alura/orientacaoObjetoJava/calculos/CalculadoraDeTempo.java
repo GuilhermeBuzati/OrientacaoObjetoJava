@@ -1,4 +1,6 @@
-package br.com.alura.orientacaoObjetoJava.modelos;
+package br.com.alura.orientacaoObjetoJava.calculos;
+
+import br.com.alura.orientacaoObjetoJava.modelos.Titulo;
 
 public class CalculadoraDeTempo {
     private int tempoTotal;

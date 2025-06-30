@@ -1,4 +1,6 @@
-import br.com.alura.orientacaoObjetoJava.modelos.CalculadoraDeTempo;
+import br.com.alura.orientacaoObjetoJava.calculos.CalculadoraDeTempo;
+import br.com.alura.orientacaoObjetoJava.calculos.FiltroRecomendacao;
+import br.com.alura.orientacaoObjetoJava.modelos.Episodio;
 import br.com.alura.orientacaoObjetoJava.modelos.Filme;
 import br.com.alura.orientacaoObjetoJava.modelos.Serie;
 
@@ -31,5 +33,14 @@ public class Principal {
         calculadora.inclui(meuFilme);
         calculadora.inclui(lost);
         System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(lost);
+        episodio.setTotalVisualizacoes(300);
+        filtro.filtra(episodio);
     }
 }

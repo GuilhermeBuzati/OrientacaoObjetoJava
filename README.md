@@ -458,3 +458,64 @@ public class Gato extends Animal {
 ```
 
 - Atributos e métodos protected são acessíveis em subclasses, mesmo que estejam em pacotes diferentes, o que os torna úteis para herança sem expor tudo publicamente.
+
+---
+
+## 🔌 Interface em Java
+
+### 📌 O que é uma interface?
+
+- Uma interface define um contrato: um conjunto de métodos que uma classe deve obrigatoriamente implementar.
+- Todos os métodos em uma interface são, por padrão, public e abstract (mesmo que você não escreva).
+- Uma interface não possui implementação, apenas a assinatura dos métodos.
+
+### 🧱 Exemplo:
+
+```java
+public interface Autenticavel {
+  boolean autenticar(String senha);
+}
+```
+
+### 🛠️ implements – Implementando uma Interface
+
+- Uma classe usa implements para se comprometer a implementar todos os métodos da interface.
+
+```java
+public class Usuario implements Autenticavel {
+    private String senha;
+
+    public Usuario(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public boolean autenticar(String senha) {
+        return this.senha.equals(senha);
+    }
+}
+```
+
+- Agora, qualquer Usuario pode ser tratado como Autenticavel.
+
+### ✅ Vantagens de Interface
+
+- Garante consistência entre objetos diferentes.
+- Facilita a abstração e o desacoplamento.
+- Permite polimorfismo com múltiplas implementações.
+- Uma classe pode implementar várias interfaces (Java suporta herança múltipla via interfaces).
+
+```java
+public class Robo implements Autenticavel, Logavel {
+// Implementa métodos de ambas as interfaces
+}
+```
+
+### 🔄 Interface vs Classe Abstrata
+
+| Característica                | Interface                | Classe Abstrata        |
+|------------------------------|--------------------------|-------------------------|
+| Pode ter atributos?          | Só `static final`        | Sim                     |
+| Métodos com implementação?   | Java 8+ permite `default`| Sim                     |
+| Herança múltipla?            | ✅ Sim                   | ❌ Não                  |
+| Palavras-chave               | `interface` + `implements` | `abstract` + `extends` |
